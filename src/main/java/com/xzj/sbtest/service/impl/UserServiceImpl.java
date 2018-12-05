@@ -8,6 +8,7 @@ import com.xzj.sbtest.exception.MsgErrorException;
 import com.xzj.sbtest.mapper.UserMapper;
 import com.xzj.sbtest.service.UserService;
 import com.xzj.sbtest.utils.RSAHelper;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
     public UserDO updateUserInfo(UserDTO userDTO) {
         UserDO userDO = getUserInfo(userDTO.getUsername());
         if (userDTO.getAge() != null) userDO.setAge(userDTO.getAge());
-        if (userDTO.getSex() != null) userDO.setSex(userDTO.getSex());
+        if (StringUtils.isNotBlank(userDTO.getSex())) userDO.setSex(userDTO.getSex());
         if (userDTO.getBirthday() != null) userDO.setBirthday(userDTO.getBirthday());
 
         Example example = new Example(UserDO.class);
