@@ -1,6 +1,7 @@
 package com.xzj.sbtest.service.impl;
 
 import com.xzj.sbtest.entity.ThreadResultDO;
+import com.xzj.sbtest.thread.ThreadDemo;
 import com.xzj.sbtest.service.ThreadService;
 import com.xzj.sbtest.thread.ThreadTest;
 import org.springframework.stereotype.Service;
@@ -10,10 +11,10 @@ import java.util.List;
 @Service
 public class ThreadServiceImpl implements ThreadService {
     @Override
-    public List<String> threadTest(Integer threadNum) throws InterruptedException {
-        ThreadResultDO threadResultDO = ThreadResultDO.getInstance();
-        threadResultDO.setSequence((short)-1);
-        threadResultDO.getThreadResult().clear();
+    public List<ThreadResultDO> threadTest(Integer threadNum) throws InterruptedException {
+        ThreadDemo threadDemo = ThreadDemo.getInstance();
+        threadDemo.setSequence((short)-1);
+        threadDemo.getThreadResultDOList().clear();
 
         Thread[] threads = new Thread[threadNum];
         for(int i = 0; i < threadNum; ++i){
@@ -34,6 +35,6 @@ public class ThreadServiceImpl implements ThreadService {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        return threadResultDO.getThreadResult();
+        return threadDemo.getThreadResultDOList();
     }
 }

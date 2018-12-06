@@ -15,9 +15,9 @@ public class ThreadTest implements Runnable{
     public void run() {
         int i = requestCount;
         String requestId;
-        ThreadResultDO threadResultDO = ThreadResultDO.getInstance();
+        ThreadDemo threadDemo = ThreadDemo.getInstance();
         while(i-- > 0){
-            requestId = threadResultDO.nextId();
+            requestId = threadDemo.nextId();
             try {
                 processRequest(requestId);
             } catch (InterruptedException e) {
@@ -29,6 +29,11 @@ public class ThreadTest implements Runnable{
     private void processRequest(String requestId) throws InterruptedException {
         Thread.sleep(50);
         System.out.printf("%s got requestId: %s %n", threadName, requestId);
-        ThreadResultDO.getInstance().getThreadResult().add(threadName + " got requestId: " + requestId);
+        ThreadResultDO threadResultDO = new ThreadResultDO();
+        threadResultDO.setThreadName(threadName);
+        threadResultDO.setThreadPrefix(requestId.split("-")[0]);
+        threadResultDO.setThreadTimestamp(requestId.split("-")[1]);
+        threadResultDO.setThreadCode(requestId.split("-")[2]);
+        ThreadDemo.getInstance().getThreadResultDOList().add(threadResultDO);
     }
 }

@@ -1,5 +1,6 @@
 package com.xzj.sbtest.controller;
 
+import com.xzj.sbtest.entity.ThreadResultDO;
 import com.xzj.sbtest.enums.ResultEnum;
 import com.xzj.sbtest.service.impl.ThreadServiceImpl;
 import com.xzj.sbtest.utils.Result;
@@ -16,7 +17,7 @@ public class ThreadController {
     ThreadServiceImpl threadService;
 
     @RequestMapping("/threadTest/{threadNum}")
-    public Result<List<String>> threadTest(@PathVariable("threadNum") Integer threadNum) throws InterruptedException {
+    public Result<List<ThreadResultDO>> threadTest(@PathVariable("threadNum") Integer threadNum) throws InterruptedException {
         return new Result<>(ResultEnum.SUCCESS.getCode(),ResultEnum.SUCCESS.getMsg(), threadService.threadTest(threadNum));
     }
 }
