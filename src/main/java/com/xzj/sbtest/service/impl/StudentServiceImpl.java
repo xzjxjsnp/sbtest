@@ -10,6 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * StudentServiceImpl class
+ *
+ * @author ppx
+ * @date 2018/12/09
+ */
 public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentMapper studentMapper;
@@ -23,7 +29,8 @@ public class StudentServiceImpl implements StudentService {
     public StudentDO queryOne(Integer id){
         StudentDO studentDO = studentMapper.selectByPrimaryKey(id);
         Integer score = Integer.parseInt(studentDO.getScore());
-        if(score < 60){
+        Integer age = 60;
+        if(score < age){
             throw new MsgErrorException(ResultEnum.FAILED);
         }
         else {
@@ -38,7 +45,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void insertTwo(){
         StudentDO studentDO1 = new StudentDO();
         studentDO1.setName("111");

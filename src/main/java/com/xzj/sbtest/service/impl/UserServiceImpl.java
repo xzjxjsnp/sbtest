@@ -7,7 +7,7 @@ import com.xzj.sbtest.enums.ResultEnum;
 import com.xzj.sbtest.exception.MsgErrorException;
 import com.xzj.sbtest.mapper.UserMapper;
 import com.xzj.sbtest.service.UserService;
-import com.xzj.sbtest.utils.RSAHelper;
+import com.xzj.sbtest.utils.RsaHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,12 @@ import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
+/**
+ * UserServiceImpl class
+ *
+ * @author ppx
+ * @date 2018/12/09
+ */
 @Service
 public class UserServiceImpl implements UserService {
     @Value("${key.private}")
@@ -30,13 +36,16 @@ public class UserServiceImpl implements UserService {
         UserDO userDO1 = getUserInfo(userDO.getUsername());
         if (userDO1 == null) {
             return false;
-        }
-        else {
-            String pswDb = new String(RSAHelper.decryptByPrivateKey(Base64.decodeBase64(userDO1.getPassword()), Base64.decodeBase64(privateKey)));
-            String psw = new String(RSAHelper.decryptByPrivateKey(Base64.decodeBase64(userDO.getPassword()), Base64.decodeBase64(privateKey)));
+        } else {
+            String pswDb = new String(RsaHelper.decryptByPrivateKey(Base64.decodeBase64(userDO1.getPassword()),
+                    Base64.decodeBase64(privateKey)));
+            String psw = new String(RsaHelper.decryptByPrivateKey(Base64.decodeBase64(userDO.getPassword()),
+                    Base64.decodeBase64(privateKey)));
             if (pswDb.equals(psw)) {
                 return true;
-            } else return false;
+            } else {
+                return false;
+            }
         }
     }
 
@@ -45,10 +54,12 @@ public class UserServiceImpl implements UserService {
         Example example = new Example(UserDO.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("username", userDO.getUsername());
-        if(userMapper.selectByExample(example).size() != 0){
+        if (userMapper.selectByExample(example).size() != 0) {
             return true;
         }
-        else return false;
+        else {
+            return false;
+        }
     }
 
     @Override
@@ -78,9 +89,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDO updateUserInfo(UserDTO userDTO) {
         UserDO userDO = getUserInfo(userDTO.getUsername());
-        if (userDTO.getAge() != null) userDO.setAge(userDTO.getAge());
-        if (StringUtils.isNotBlank(userDTO.getSex())) userDO.setSex(userDTO.getSex());
-        if (userDTO.getBirthday() != null) userDO.setBirthday(userDTO.getBirthday());
+        if (userDTO.getAge() != null) {
+            userDO.setAge(userDTO.getAge());
+        }
+        if (StringUtils.isNotBlank(userDTO.getSex())) {
+            userDO.setSex(userDTO.getSex());
+        }
+        if (userDTO.getBirthday() != null) {
+            userDO.setBirthday(userDTO.getBirthday());
+        }
 
         Example example = new Example(UserDO.class);
         Example.Criteria criteria = example.createCriteria();
@@ -96,7 +113,9 @@ public class UserServiceImpl implements UserService {
         userDO.setPassword(pwdDTO.getOldpwd());
         if (checkUser(userDO)) {
             UserDO userDO1 = getUserInfo(pwdDTO.getUsername());
-            if (userDO1==null) return false;
+            if (userDO1==null) {
+                return false;
+            }
 
             userDO1.setPassword(pwdDTO.getNewpwd());
             Example example = new Example(UserDO.class);

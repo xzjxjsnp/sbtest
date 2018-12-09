@@ -8,18 +8,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Map;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RSAHelperTest {
+public class RsaHelperTest {
 
     @Test
     public void initKey() throws Exception {
-        Map<String, Object> keyMap = RSAHelper.initKey();
+        Map<String, Object> keyMap = RsaHelper.initKey();
 
-        byte[] publicKey = RSAHelper.getPublicKey(keyMap);
-        byte[] privateKey = RSAHelper.getPrivateKey(keyMap);
+        byte[] publicKey = RsaHelper.getPublicKey(keyMap);
+        byte[] privateKey = RsaHelper.getPrivateKey(keyMap);
 
         System.out.println("公钥：\n" + Base64.encodeBase64String(publicKey));
         System.out.println("私钥：\n" + Base64.encodeBase64String(privateKey));

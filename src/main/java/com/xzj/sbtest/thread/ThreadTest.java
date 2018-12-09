@@ -2,6 +2,12 @@ package com.xzj.sbtest.thread;
 
 import com.xzj.sbtest.entity.ThreadResultDO;
 
+/**
+ * ThreadTest class
+ *
+ * @author ppx
+ * @date 2018/12/09
+ */
 public class ThreadTest implements Runnable{
     private final int requestCount;
     private final String threadName;

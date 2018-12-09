@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * ThreadController class
+ *
+ * @author ppx
+ * @date 2018/12/09
+ */
 @RestController
 public class ThreadController {
     @Autowired

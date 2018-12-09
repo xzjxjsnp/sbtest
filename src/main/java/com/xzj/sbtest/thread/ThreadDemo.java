@@ -9,6 +9,12 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * ThreadDemo class
+ *
+ * @author ppx
+ * @date 2018/12/09
+ */
 @Data
 public class ThreadDemo {
     private static ThreadDemo ourInstance = new ThreadDemo();
@@ -24,7 +30,7 @@ public class ThreadDemo {
     private ThreadDemo() {
     }
 
-    public short nextSequence() {
+    public synchronized short nextSequence() {
         sequence++;
         return sequence;
     }

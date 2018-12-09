@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * StudentController class
+ *
+ * @author ppx
+ * @date 2018/12/09
+ */
 @RestController
 @RequestMapping("/student")
 public class StudentController {
@@ -33,22 +39,6 @@ public class StudentController {
         }
         return new Result<>(0,"成功", studentService.insertOne(studentDO));
     }
-//
-//    @PostMapping("insert")
-//    public StudentDO insertOne(@RequestParam("name") String name, @RequestParam("age") Integer age) {
-//        StudentDO studentDO = new StudentDO();
-//        studentDO.setName(name);
-//        studentDO.setAge(age);
-//        return studentService.insertOne(studentDO);
-//    }
-
-//    @GetMapping("insert")
-//    public StudentDO insertOne(@RequestParam("name") String name, @RequestParam("age") Integer age) {
-//        StudentDO studentDO = new StudentDO();
-//        studentDO.setName(name);
-//        studentDO.setAge(age);
-//        return studentService.insertOne(studentDO);
-//    }
 
     @PostMapping("inserttwo")
     public void insertTwo(){

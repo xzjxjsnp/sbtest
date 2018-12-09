@@ -3,6 +3,12 @@ package com.xzj.sbtest.exception;
 import com.xzj.sbtest.enums.ResultEnum;
 import lombok.Data;
 
+/**
+ * UserNotExistException class
+ *
+ * @author ppx
+ * @date 2018/12/09
+ */
 @Data
 public class UserNotExistException extends RuntimeException {
     private Integer code;

@@ -2,6 +2,12 @@ package com.xzj.sbtest.utils;
 
 import lombok.Data;
 
+/**
+ * Result<T> class
+ *
+ * @author ppx
+ * @date 2018/12/09
+ */
 @Data
 public class Result<T> {
     private Integer code;

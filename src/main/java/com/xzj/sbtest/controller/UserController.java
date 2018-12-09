@@ -12,6 +12,12 @@ import com.xzj.sbtest.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * UserController class
+ *
+ * @author ppx
+ * @date 2018/12/09
+ */
 @RestController
 public class UserController {
     @Autowired

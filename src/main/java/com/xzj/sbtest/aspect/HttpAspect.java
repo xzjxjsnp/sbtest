@@ -10,6 +10,12 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * HttpAspect class
+ *
+ * @author ppx
+ * @date 2018/12/09
+ */
 @Aspect
 @Component
 public class HttpAspect {

@@ -8,6 +8,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * ThreadServiceImpl class
+ *
+ * @author ppx
+ * @date 2018/12/09
+ */
 @Service
 public class ThreadServiceImpl implements ThreadService {
     @Override
@@ -29,12 +35,6 @@ public class ThreadServiceImpl implements ThreadService {
             ct.join();
         }
 
-//        //设置一定间隔 确保所有子线程执行完毕后主线程再返回结果。
-//        try {
-//            Thread.sleep(1500);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         return threadDemo.getThreadResultDOList();
     }
 }
