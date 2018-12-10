@@ -9,8 +9,16 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RSAHelper {
-    //非对称密钥算法
+/**
+ * RsaHelper class
+ *
+ * @author ppx
+ * @date 2018/12/09
+ */
+public class RsaHelper {
+    /**
+     * 非对称密钥算法
+     */
     public static final String KEY_ALGORITHM = "RSA";
 
     /**
@@ -19,9 +27,14 @@ public class RSAHelper {
      */
     private static final int KEY_SIZE = 512;
 
-    //公钥
+    /**
+     * 公钥
+     */
     private static final String PUBLIC_KEY = "RSAPublicKey";
-    //私钥
+
+    /**
+     * 私钥
+     */
     private static final String PRIVATE_KEY = "RSAPrivateKey";
 
     /**
@@ -42,7 +55,7 @@ public class RSAHelper {
         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
 
         //将密钥存储在map中
-        Map<String, Object> keyMap = new HashMap<String, Object>();
+        Map<String, Object> keyMap = new HashMap<String, Object>(16);
         keyMap.put(PUBLIC_KEY, publicKey);
         keyMap.put(PRIVATE_KEY, privateKey);
         return keyMap;
